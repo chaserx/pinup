@@ -24,8 +24,9 @@
   <%= stylesheet_link_tag :all %>
 
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
-  <%= javascript_include_tag "/libs/modernizr" %>
+  <%= javascript_include_tag "libs/modernizr" %>
   <%= csrf_meta_tag %>
+  <%= yield :head %>
 </head>
 <body>
 
