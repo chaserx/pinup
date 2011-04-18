@@ -1,15 +1,56 @@
 <!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <html>
 <head>
-  <title>Pinup</title>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>PinUp!</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" %>
+
+  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+  <%= javascript_include_tag "/libs/modernizr" %>
   <%= csrf_meta_tag %>
 </head>
 <body>
 
 <%= yield %>
 
+<%= javascript_include_tag :rails %>
+<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" %>
+<script>window.jQuery || <%= javascript_include_tag :jquery %></script>
+<!-- scripts concatenated and minified via ant build script-->
+<%= javascript_include_tag "mylibs/gears_init.js" %>
+<%= javascript_include_tag "mylibs/geo.js" %>
+<%= javascript_include_tag "plugins.js" %>
+<%= javascript_include_tag "script.js" %>
+
+<!--[if lt IE 7 ]>
+  <%= javascript_include_tag "libs/dd_belatedpng.js" %>
+  <script>DD_belatedPNG.fix("img, .png_bg"); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
+<![endif]-->
+
+<!-- mathiasbynens.be/notes/async-analytics-snippet Change UA-XXXXX-X to be your site's ID -->
+ <script>
+   var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];
+   (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+   g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+   s.parentNode.insertBefore(g,s)}(document,"script"));
+ </script>
 </body>
 </html>
