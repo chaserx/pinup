@@ -7,6 +7,11 @@ gem 'rails', '3.0.6'
 
 gem 'sqlite3'
 
+gem 'mongo_mapper'
+gem 'bson_ext'
+
+gem 'jquery-rails'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
