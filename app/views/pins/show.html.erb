@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Desc:</b>
+  <%= @pin.desc %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%= @pin.lat %>
+</p>
+
+<p>
+  <b>Lon:</b>
+  <%= @pin.lon %>
+</p>
+
+<p>
+  <b>Accuracy:</b>
+  <%= @pin.accuracy %>
+</p>
+
+
+<%= link_to 'Edit', edit_pin_path(@pin) %> |
+<%= link_to 'Back', pins_path %>

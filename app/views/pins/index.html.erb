@@ -1,0 +1,29 @@
+<h1>Listing pins</h1>
+
+<table>
+  <tr>
+    <th>Desc</th>
+    <th>Lat</th>
+    <th>Lon</th>
+    <th>Accuracy</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pins.each do |pin| %>
+  <tr>
+    <td><%= pin.desc %></td>
+    <td><%= pin.lat %></td>
+    <td><%= pin.lon %></td>
+    <td><%= pin.accuracy %></td>
+    <td><%= link_to 'Show', pin %></td>
+    <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
+    <td><%= link_to 'Destroy', pin, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pin', new_pin_path %>
