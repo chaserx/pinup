@@ -32,9 +32,9 @@
 
 <%= yield %>
 
-<%= javascript_include_tag :rails %>
+<%= javascript_include_tag "rails" %>
 <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" %>
-<script>window.jQuery || <%= javascript_include_tag :jquery %></script>
+<script>window.jQuery || <%= javascript_include_tag "jquery" %></script>
 <!-- scripts concatenated and minified via ant build script-->
 <%= javascript_include_tag "mylibs/gears_init.js" %>
 <%= javascript_include_tag "mylibs/geo.js" %>
