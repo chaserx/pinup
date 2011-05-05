@@ -27,9 +27,11 @@
   <%= javascript_include_tag "libs/modernizr" %>
   <%= csrf_meta_tag %>
   <%= yield :head %>
+  
+  
 </head>
 <body>
-
+<div id="message">Location unknown</div>
 <%= yield %>
 
 <%= javascript_include_tag "rails" %>
@@ -40,7 +42,51 @@
 <%= javascript_include_tag "mylibs/geo.js" %>
 <%= javascript_include_tag "plugins.js" %>
 <%= javascript_include_tag "script.js" %>
+<script>
+$(document).ready(function get_location() {
+  if (Modernizr.geolocation) {
+    navigator.geolocation.getCurrentPosition(show_map);
+    function show_map(position) {
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude;
+      // let's show a map or do something interesting!
+      var message = document.getElementById("message");
 
+      message.innerHTML ="<p><img src='http://maps.google.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=14&size=256x256&maptype=roadmap&sensor=false&markers=color:blue%7Clabel:ABC%7C" + latitude + "," + longitude + "' /></p>";
+
+
+
+      message.innerHTML+="<p>Longitude: " + longitude + "</p>";
+      //message.innerHTML+="<p>Accuracy: " + accuracy + "</p>";
+      message.innerHTML+="<p>Latitude: " + latitude + "</p>";
+      $("input#lon").val(longitude);
+    }
+  } else {
+    if (geo_position_js.init()) {
+      geo_position_js.getCurrentPosition(show_map, geo_error);
+          function show_map(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            var accuracy = position.coords.accuracy;
+            // let's show a map or do something interesting!
+            var message = document.getElementById("message");
+
+            message.innerHTML ="<img src='http://maps.google.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=14&size=256x256&maptype=roadmap&sensor=false&markers=color:blue%7Clabel:ABC%7C" + latitude + "," + longitude + "' />";
+
+
+
+            message.innerHTML+="<p>Longitude: " + longitude + "</p>";
+            message.innerHTML+="<p>Accuracy: " + accuracy + "</p>";
+            message.innerHTML+="<p>Latitude: " + latitude + "</p>";
+            $("input#lon").val(longitude);
+          }
+      }
+    }
+
+}	
+});
+
+</script>
 <!--[if lt IE 7 ]>
   <%= javascript_include_tag "libs/dd_belatedpng.js" %>
   <script>DD_belatedPNG.fix("img, .png_bg"); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
